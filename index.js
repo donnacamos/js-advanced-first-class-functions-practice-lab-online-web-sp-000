@@ -1,26 +1,35 @@
-function logDriverNames(drivers){
-    for(const driver of drivers){
-        console.log(driver.name);
+const logDriverNames = function (drivers) {
+  drivers.forEach(function(element) {
+    console.log(element.name);
+  });
+}
+
+const logDriversByHometown = function (drivers, hometown) {
+  drivers.forEach( function(element) {
+    if (element.hometown === hometown) {
+      console.log(element.name);
     }
+  });
+};
+
+const driversByRevenue = function (drivers) {
+  return [...drivers].sort(function (a, b) {
+    return a.revenue - b.revenue;
+  });
+};
+
+const driversByName = function (drivers) {
+  return [...drivers].sort(function(a, b) {
+    return a.name > b.name;
+  });
 }
 
-function logDriversByHometown(drivers, location){
-    selectedDrivers = drivers.filter(driver => driver.hometown === location);
-    logDriverNames(selectedDrivers);
-}
+const totalRevenue = function (drivers) {
+  return drivers.reduce(function(total, driver) {
+    return total + driver.revenue;
+  }, 0);
+};
 
-function driversByRevenue(drivers){
-    return drivers.slice().sort((a,b) => a.revenue - b.revenue);
-}
-
-function driversByName(drivers){
-    return drivers.slice().sort((a,b) => a.name.localeCompare(b.name))
-}
-
-function totalRevenue(drivers){
-    return drivers.reduce((cum, curr) => cum + curr.revenue, 0);
-}
-
-function averageRevenue(drivers){
-    return totalRevenue(drivers) / drivers.length;
-}
+const averageRevenue = function (drivers) {
+  return totalRevenue(drivers) / drivers.length;
+};
