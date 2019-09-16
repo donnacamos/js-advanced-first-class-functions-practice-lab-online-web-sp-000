@@ -4,3 +4,12 @@ function logDriverNames(drivers){
     console.log(driver.name);
   }
 }
+
+function logDriversByHometown(drivers, location){
+  selectedDrivers = drivers.filter(driver => driver.hometown === location);
+  logDriverNames(selectedDrivers);
+}
+
+function driversByRevenue(drivers){
+  return drivers.slice().sort((a,b) => a.revenue - b.revenue);
+}
